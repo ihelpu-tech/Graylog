@@ -1,0 +1,257 @@
+{
+  "extractors": [
+    {
+      "title": "pfSense RFC 5424 filterlog: IPv6 UDP",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "csv",
+          "config": {
+            "column_header": "RuleNumber,SubRuleNumber,Anchor,Tracker,Interface,Reason,Action,Direction,IPVersion,Class,FlowLabel,HopLimit,Protocol,ProtocolID,Length,SourceIP,DestIP,SourcePort,DestPort,DataLength"
+          }
+        }
+      ],
+      "order": 4,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "FilterData",
+      "extractor_config": {
+        "regex_value": "filterlog\\s\\d{1,5}\\s-\\s-\\s+(.*)"
+      },
+      "condition_type": "regex",
+      "condition_value": "filterlog\\s\\d{1,5}\\s-\\s-\\s+(.*),(in|out),6,.*,UDP"
+    },
+    {
+      "title": "pfSense RFC 3164 filterlog: IPv6 UDP",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "csv",
+          "config": {
+            "column_header": "RuleNumber,SubRuleNumber,Anchor,Tracker,Interface,Reason,Action,Direction,IPVersion,Class,FlowLabel,HopLimit,Protocol,ProtocolID,Length,SourceIP,DestIP,SourcePort,DestPort,DataLength"
+          }
+        }
+      ],
+      "order": 1,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "FilterData",
+      "extractor_config": {
+        "regex_value": "^filterlog\\[.*\\]:\\s+(.*)$"
+      },
+      "condition_type": "regex",
+      "condition_value": "^filterlog\\[.*\\]:\\s+\\d,,,\\d+,(.*),(in|out),6,.*,UDP"
+    },
+    {
+      "title": "pfSense RFC 3164 filterlog: IPv4 TCP",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "csv",
+          "config": {
+            "column_header": "RuleNumber,SubRuleNumber,Anchor,Tracker,Interface,Reason,Action,Direction,IPVersion,TOS,ECN,TTL,ID,Offset,Flags,ProtocolID,Protocol,Length,SourceIP,DestIP,SourcePort,DestPort,DataLength,TCPFlags,Sequence,ACK,Window,URG,Options"
+          }
+        }
+      ],
+      "order": 2,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "FilterData",
+      "extractor_config": {
+        "regex_value": "^filterlog\\[.*\\]:\\s+(.*)$"
+      },
+      "condition_type": "regex",
+      "condition_value": "^filterlog\\[.*\\]:\\s+\\d,,,\\d+,(.*),(in|out),4,.*,tcp"
+    },
+    {
+      "title": "pfSense RFC 3164 filterlog: IPv4 UDP",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "csv",
+          "config": {
+            "column_header": "RuleNumber,SubRuleNumber,Anchor,Tracker,Interface,Reason,Action,Direction,IPVersion,TOS,ECN,TTL,ID,Offset,Flags,ProtocolID,Protocol,Length,SourceIP,DestIP,SourcePort,DestPort,DataLength"
+          }
+        }
+      ],
+      "order": 3,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "FilterData",
+      "extractor_config": {
+        "regex_value": "^filterlog\\[\\d+\\]:\\s+(.*)$"
+      },
+      "condition_type": "regex",
+      "condition_value": "^filterlog\\[.*\\]:\\s+\\d,,,\\d+,(.*),(in|out),4,.*,udp"
+    },
+    {
+      "title": "pfSense RFC 3164 filterlog: IPv6 TCP",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "csv",
+          "config": {
+            "column_header": "RuleNumber,SubRuleNumber,Anchor,Tracker,Interface,Reason,Action,Direction,IPVersion,Class,FlowLabel,HopLimit,Protocol,ProtocolID,Length,SourceIP,DestIP,SourcePort,DestPort,DataLength,TCPFlags,Sequence,ACK,Window,URG,Options"
+          }
+        }
+      ],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "FilterData",
+      "extractor_config": {
+        "regex_value": "^filterlog\\[.*\\]:\\s+(.*)$"
+      },
+      "condition_type": "regex",
+      "condition_value": "^filterlog\\[.*\\]:\\s+\\d,,,\\d+,(.*),(in|out),6,.*,TCP"
+    },
+    {
+      "title": "pfSense RFC 5424 filterlog: IPv4 TCP",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "csv",
+          "config": {
+            "column_header": "RuleNumber,SubRuleNumber,Anchor,Tracker,Interface,Reason,Action,Direction,IPVersion,TOS,ECN,TTL,ID,Offset,Flags,ProtocolID,Protocol,Length,SourceIP,DestIP,SourcePort,DestPort,DataLength,TCPFlags,Sequence,ACK,Window,URG,Options"
+          }
+        }
+      ],
+      "order": 5,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "FilterData",
+      "extractor_config": {
+        "regex_value": "filterlog\\s\\d{1,5}\\s-\\s-\\s+(.*)"
+      },
+      "condition_type": "regex",
+      "condition_value": "filterlog\\s\\d{1,5}\\s-\\s-\\s+(.*),(in|out),4,.*,tcp"
+    },
+    {
+      "title": "pfSense RFC 5424 filterlog: IPv4 UDP",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "csv",
+          "config": {
+            "column_header": "RuleNumber,SubRuleNumber,Anchor,Tracker,Interface,Reason,Action,Direction,IPVersion,TOS,ECN,TTL,ID,Offset,Flags,ProtocolID,Protocol,Length,SourceIP,DestIP,SourcePort,DestPort,DataLength"
+          }
+        }
+      ],
+      "order": 6,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "FilterData",
+      "extractor_config": {
+        "regex_value": "filterlog\\s\\d{1,5}\\s-\\s-\\s+(.*)"
+      },
+      "condition_type": "regex",
+      "condition_value": "filterlog\\s\\d{1,5}\\s-\\s-\\s+(.*),(in|out),4,.*,udp"
+    },
+    {
+      "title": "pfSense RFC 5424 filterlog: IPv4 ICMP",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "csv",
+          "config": {
+            "column_header": "RuleNumber,SubRuleNumber,Anchor,Tracker,Interface,Reason,Action,Direction,IPVersion,TOS,ECN,TTL,ID,Offset,Flags,ProtocolID,Protocol,Length,SourceIP,DestIP,SourcePort,DestPort,DataLength"
+          }
+        }
+      ],
+      "order": 7,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "FilterData",
+      "extractor_config": {
+        "regex_value": "filterlog\\s\\d{1,5}\\s-\\s-\\s+(.*)"
+      },
+      "condition_type": "regex",
+      "condition_value": "filterlog\\s\\d{1,5}\\s-\\s-\\s+(.*),(in|out),4,.*,icmp"
+    },
+    {
+      "title": "pfSense RFC 5424 filterlog: IPv4 IGMP",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "csv",
+          "config": {
+            "column_header": "RuleNumber,SubRuleNumber,Anchor,Tracker,Interface,Reason,Action,Direction,IPVersion,TOS,ECN,TTL,ID,Offset,Flags,ProtocolID,Protocol,Length,SourceIP,DestIP,DataLength"
+          }
+        }
+      ],
+      "order": 8,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "FilterData",
+      "extractor_config": {
+        "regex_value": "filterlog\\s\\d{1,5}\\s-\\s-\\s+(.*)"
+      },
+      "condition_type": "regex",
+      "condition_value": "filterlog\\s\\d{1,5}\\s-\\s-\\s+(.*),(in|out),4,.*,igmp"
+    },
+    {
+      "title": "pfSense RFC 5424 filterlog: IPv4 GRE",
+      "extractor_type": "regex",
+      "converters": [
+        {
+          "type": "csv",
+          "config": {
+            "column_header": "RuleNumber,SubRuleNumber,Anchor,Tracker,Interface,Reason,Action,Direction,IPVersion,TOS,ECN,TTL,ID,Offset,Flags,ProtocolID,Protocol,Length,SourceIP,DestIP,DataLength"
+          }
+        }
+      ],
+      "order": 9,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "FilterData",
+      "extractor_config": {
+        "regex_value": "filterlog\\s\\d{1,5}\\s-\\s-\\s+(.*)"
+      },
+      "condition_type": "regex",
+      "condition_value": "filterlog\\s\\d{1,5}\\s-\\s-\\s+(.*),(in|out),4,.*,gre"
+    },
+    {
+      "title": "OpenVPN RFC 5424 Username",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 10,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "Username",
+      "extractor_config": {
+        "regex_value": "openvpn\\s\\d{1,5}\\s-\\s-\\s+(\\w+)"
+      },
+      "condition_type": "regex",
+      "condition_value": "openvpn\\s\\d{1,5}\\s-\\s-\\s+(.*)(MULTI)"
+    },
+    {
+      "title": "OpenVPN RFC 5424 Source IP",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 11,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "SourceIP",
+      "extractor_config": {
+        "regex_value": "openvpn\\s\\d{1,5}\\s-\\s-\\s+\\w+/((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3})"
+      },
+      "condition_type": "regex",
+      "condition_value": "openvpn\\s\\d{1,5}\\s-\\s-\\s+(.*)(MULTI)"
+    },
+    {
+      "title": "OpenVPN RFC 5424 Local IP",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 12,
+      "cursor_strategy": "copy",
+      "source_field": "full_message",
+      "target_field": "LocalIP",
+      "extractor_config": {
+        "regex_value": "openvpn\\s\\d{1,5}\\s-\\s-\\s+.*IPv4=((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3})"
+      },
+      "condition_type": "regex",
+      "condition_value": "openvpn\\s\\d{1,5}\\s-\\s-\\s+(.*)(MULTI)"
+    }
+  ],
+  "version": "4.1.0"
+}
